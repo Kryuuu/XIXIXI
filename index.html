@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <canvas id="particles-canvas"></canvas>
+
 
     <!-- Background Music -->
     <audio id="bg-music" loop preload="auto">
@@ -130,7 +130,49 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- MediaPipe Globals -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <!-- Hidden Video for Camera -->
+    <video id="video-input" style="display:none;"></video>
+
+    <!-- Camera Permission Modal -->
+    <div id="camera-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <h2>Experience the Magic ✨</h2>
+            <p>Allow camera access to interact with the particles using your hands.</p>
+            <p class="modal-note">(We do not record or save any video)</p>
+            <button id="enable-camera-btn" class="enable-btn">Enable Interaction</button>
+        </div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="controls-panel glass">
+        <button class="control-btn active" data-shape="sphere">Cloud</button>
+        <button class="control-btn" data-shape="heart">Heart</button>
+        <button class="control-btn" data-shape="flower">Flower</button>
+        <button class="control-btn" data-shape="saturn">Saturn</button>
+        <div class="divider"></div>
+        <input type="color" id="particle-color" value="#64B5F6">
+        <span id="hand-status" class="status-badge">Waiting for Hand...</span>
+    </div>
+
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

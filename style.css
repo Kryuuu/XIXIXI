@@ -29,16 +29,6 @@ body {
     line-height: 1.6;
 }
 
-#particles-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
 /* --- MUSIC CONTROL --- */
 .music-btn {
     position: fixed;
@@ -219,6 +209,7 @@ body {
     padding: 100px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .masonry-grid {
@@ -262,6 +253,138 @@ body {
     color: var(--accent-color);
 }
 
+/* --- PARTICLE CONTROLS --- */
+.controls-panel {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    z-index: 1000;
+}
+
+.control-btn {
+    background: transparent;
+    border: 1px solid rgba(93, 64, 55, 0.2);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover,
+.control-btn.active {
+    background: var(--text-color);
+    color: #fff;
+}
+
+.divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(93, 64, 55, 0.2);
+    margin: 0 5px;
+}
+
+#particle-color {
+    -webkit-appearance: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
+
+#particle-color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+#particle-color::-webkit-color-swatch {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.status-badge {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    width: 120px;
+}
+
+/* --- CAMERA PERMISSION MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(93, 64, 55, 0.4);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.modal-note {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.enable-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.enable-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(100, 181, 246, 0.3);
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .main-title {
@@ -288,6 +411,21 @@ body {
         /* Round only bottom corners */
         padding: 15px 20px;
         background: rgba(255, 255, 255, 0.9);
+    }
+
+    .controls-panel {
+        bottom: 90px;
+        /* shift up to avoid overlapping music btn on small screens if stacked? */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .status-badge {
+        display: none;
+        /* Hide status text on mobile to save space */
     }
 
     .soundtrack-section,
