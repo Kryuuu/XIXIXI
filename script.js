@@ -50,35 +50,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btn.addEventListener('click', async () => {
-            btn.textContent = "Requesting...";
-            btn.disabled = disabled;
+            btn.textContent = "Starting Camera...";
+            btn.disabled = true;
 
-            try {
-                // Determine constraint
-                const constraints = { video: { width: 640, height: 480 } };
-
-                // Request stream to trigger permission prompt
-                const stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-                // If successful:
-                console.log("Permission granted");
-                stream.getTracks().forEach(track => track.stop()); // Stop this stream, MediaPipe will start its own
-
-                // Hide Modal
-                modal.classList.add('hidden');
-
-                // Start MediaPipe
-                statusSpan.textContent = "Starting Camera...";
-                initMediaPipe();
-
-            } catch (err) {
-                console.error("Camera permission denied or error:", err);
-                btn.textContent = "Permission Failed / Try Again";
-                btn.disabled = false;
-                statusSpan.textContent = "Camera Blocked";
-                statusSpan.style.color = "red";
-                alert("Camera access is required for the hand gesture features. Please allow access in your browser settings and try again.");
-            }
+            // Direct call to MediaPipe init which handles the camera 
+            initMediaPipe(
+                // Success Callback
+                () => {
+                    console.log("Camera started successfully");
+                    modal.classList.add('hidden');
+                },
+                // Error Callback
+                (err) => {
+                    console.error("Camera failed:", err);
+                    btn.textContent = "Permission Failed / Try Again";
+                    btn.disabled = false;
+                    alert("Unable to access camera. Please allow permission or ensure no other app is using it.");
+                }
+            );
         });
     }
 
@@ -257,14 +246,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- MediaPipe Logic (Robust Global) ---
-    function initMediaPipe() {
+    function initMediaPipe(onSuccess, onError) {
         const videoElement = document.getElementById('video-input');
         const statusSpan = document.getElementById('hand-status');
 
         if (typeof window.Hands === 'undefined' || typeof window.Camera === 'undefined') {
-            console.error("MediaPipe scripts failed to load.");
-            statusSpan.textContent = "Error: Libs not loaded.";
-            statusSpan.style.color = "red";
+            const err = "MediaPipe scripts failed to load.";
+            console.error(err);
+            if (statusSpan) {
+                statusSpan.textContent = "Error: Libs not loaded.";
+                statusSpan.style.color = "red";
+            }
+            if (onError) onError(err);
             return;
         }
 
@@ -284,8 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
         hands.onResults((results) => {
             if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
                 isHandDetected = true;
-                statusSpan.textContent = "Hand Detected";
-                statusSpan.style.color = "green";
+                if (statusSpan) {
+                    statusSpan.textContent = "Hand Detected";
+                    statusSpan.style.color = "green";
+                }
 
                 const landmarks = results.multiHandLandmarks[0];
                 const wrist = landmarks[0];
@@ -302,8 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 handOpenness = Math.max(0, Math.min(1, normalized));
             } else {
                 isHandDetected = false;
-                statusSpan.textContent = "Show Hand...";
-                statusSpan.style.color = "";
+                if (statusSpan) {
+                    statusSpan.textContent = "Show Hand...";
+                    statusSpan.style.color = "";
+                }
             }
         });
 
@@ -314,15 +311,20 @@ document.addEventListener('DOMContentLoaded', () => {
             width: 640,
             height: 480
         });
+
         camera.start()
             .then(() => {
                 console.log("Camera started");
-                statusSpan.textContent = "Camera Active";
+                if (statusSpan) statusSpan.textContent = "Camera Active";
+                if (onSuccess) onSuccess();
             })
             .catch(err => {
                 console.error("Camera failed", err);
-                statusSpan.textContent = "Camera Error";
-                statusSpan.style.color = "red";
+                if (statusSpan) {
+                    statusSpan.textContent = "Camera Error";
+                    statusSpan.style.color = "red";
+                }
+                if (onError) onError(err);
             });
     }
 
