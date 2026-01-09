@@ -162,14 +162,19 @@
     </div>
 
     <!-- Controls Panel -->
-    <div class="controls-panel glass">
-        <button class="control-btn active" data-shape="sphere">Cloud</button>
-        <button class="control-btn" data-shape="heart">Heart</button>
-        <button class="control-btn" data-shape="flower">Flower</button>
-        <button class="control-btn" data-shape="saturn">Saturn</button>
-        <div class="divider"></div>
-        <input type="color" id="particle-color" value="#64B5F6">
-        <span id="hand-status" class="status-badge">Waiting for Hand...</span>
+    <div class="controls-panel glass minimized">
+        <button id="toggle-controls" class="toggle-btn" title="Hide Controls">
+            <i class="ri-arrow-left-s-line"></i>
+        </button>
+        <div class="controls-content">
+            <button class="control-btn active" data-shape="sphere">Cloud</button>
+            <button class="control-btn" data-shape="heart">Heart</button>
+            <button class="control-btn" data-shape="flower">Flower</button>
+            <button class="control-btn" data-shape="saturn">Saturn</button>
+            <div class="divider"></div>
+            <input type="color" id="particle-color" value="#64B5F6">
+            <span id="hand-status" class="status-badge">Waiting for Hand...</span>
+        </div>
     </div>
 
     <script type="module" src="script.js"></script>

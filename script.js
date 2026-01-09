@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btn.addEventListener('click', async () => {
             btn.textContent = "Requesting...";
-            btn.disabled = true;
+            btn.disabled = disabled;
 
             try {
                 // Determine constraint
@@ -328,6 +328,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- UI Controls ---
     function initUIControls() {
+        const toggleBtn = document.getElementById('toggle-controls');
+        const panel = document.querySelector('.controls-panel');
+
+        if (toggleBtn && panel) {
+            toggleBtn.addEventListener('click', () => {
+                panel.classList.toggle('minimized');
+
+                // Optional tooltip update
+                const icon = toggleBtn.querySelector('i');
+                if (panel.classList.contains('minimized')) {
+                    toggleBtn.title = "Show Controls";
+                    // Icon rotation handled by CSS
+                } else {
+                    toggleBtn.title = "Hide Controls";
+                }
+            });
+        }
+
         document.querySelectorAll('.control-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const shape = e.target.getAttribute('data-shape');

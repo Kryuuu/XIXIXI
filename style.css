@@ -260,8 +260,8 @@ body {
     left: 30px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 20px;
+    padding: 5px 10px;
+    /* Reduced padding for cleaner look */
     z-index: 1000;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.75);
@@ -269,7 +269,60 @@ body {
     box-shadow: 0 8px 32px 0 rgba(93, 64, 55, 0.15);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    transition: all 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+    /* Allow panel to slide */
+}
+
+.controls-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 5px;
+    transition: opacity 0.2s;
+    /* Ensure content stays in row */
+}
+
+/* Minimized State */
+.controls-panel.minimized {
+    transform: translateX(calc(-100% + 45px));
+    /* Hide everything except the toggle button */
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.controls-panel.minimized .controls-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.controls-panel.minimized:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.toggle-btn {
+    background: #fff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-right: 5px;
+    z-index: 1001;
+    /* Above content */
+}
+
+.controls-panel.minimized .toggle-btn {
+    transform: rotate(180deg);
+    /* Flip arrow */
+    margin-right: -5px;
+    /* Adjust alignment when minimized */
 }
 
 .control-btn {
@@ -421,7 +474,7 @@ body {
         padding: 0 10px;
     }
 
-    .masonry-grid {
+    .mading-grid {
         flex-direction: row;
         /* Keep same layout as PC */
         gap: 10px;
@@ -443,12 +496,43 @@ body {
         transform: translateX(-50%);
         width: auto;
         max-width: 95%;
-        padding: 8px 16px;
+        padding: 5px 10px;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-wrap: nowrap;
+        /* Prevent wrapping so toggle stays with content */
+        gap: 5px;
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.9);
+    }
+
+    .controls-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .controls-panel.minimized {
+        /* On mobile, maybe slide LEFT to edge, or DOWN? 
+           User said "kesamping" (aside). Let's slide to the LEFT edge.
+           Currently it's centered. translateX(-50%).
+           To slide left off screen: translateX(-100%?)
+        */
+        transform: translateX(calc(-50% - 200px));
+        /* Slide left out of view, keep button? */
+        /* Better approach for mobile "hide": Collapse to a small bubble on the left */
+        left: 20px;
+        transform: translateX(0);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        overflow: hidden;
+        padding: 0;
+        padding-left: 5px;
+        /* Center icon */
+    }
+
+    .controls-panel.minimized .controls-content {
+        display: none;
     }
 
     .control-btn {
