@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     const PARTICLE_COUNT = 8000;
-    const PARTICLE_SIZE = 5.0;
+    const PARTICLE_SIZE = 3.5;
     const TRANSITION_SPEED = 0.05;
 
     // --- 3D Scene Setup ---
@@ -239,11 +239,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const positionsAttribute = geometry.attributes.position;
         const currentPos = positionsAttribute.array;
 
+        let needsUpdate = false;
         for (let i = 0; i < PARTICLE_COUNT * 3; i++) {
             const target = transformPositions[i];
-            currentPos[i] += (target - currentPos[i]) * TRANSITION_SPEED;
+            const diff = target - currentPos[i];
+            if (Math.abs(diff) > 0.01) {
+                currentPos[i] += diff * TRANSITION_SPEED;
+                needsUpdate = true;
+            }
         }
-        positionsAttribute.needsUpdate = true;
+
+        if (needsUpdate) {
+            positionsAttribute.needsUpdate = true;
+        }
 
         renderer.render(scene, camera);
     }
@@ -269,8 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
         hands.setOptions({
             maxNumHands: 1,
             modelComplexity: 1,
-            minDetectionConfidence: 0.5,
-            minTrackingConfidence: 0.5
+            minDetectionConfidence: 0.6,
+            minTrackingConfidence: 0.6
         });
 
         hands.onResults((results) => {
@@ -401,4 +409,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
-
