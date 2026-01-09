@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Configuration ---
     const PARTICLE_COUNT = 8000;
-    const PARTICLE_SIZE = 1.0;
+    const PARTICLE_SIZE = 5.0;
     const TRANSITION_SPEED = 0.05;
 
     // --- 3D Scene Setup ---
@@ -401,3 +401,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
