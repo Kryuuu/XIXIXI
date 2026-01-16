@@ -278,21 +278,30 @@ body {
     align-items: center;
     gap: 12px;
     padding-left: 5px;
-    transition: opacity 0.2s;
-    /* Ensure content stays in row */
+    /* Smooth Animation Properties */
+    max-width: 600px;
+    /* Large enough to fit content */
+    opacity: 1;
+    transition: max-width 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, padding 0.5s ease;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Minimized State */
 .controls-panel.minimized {
-    transform: translateX(calc(-100% + 45px));
-    /* Hide everything except the toggle button */
+    /* Fixed: Instead of moving off-screen, just collapse the content */
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    /* Optional: Limit width to just the button + padding */
 }
 
 .controls-panel.minimized .controls-content {
     opacity: 0;
     pointer-events: none;
+    /* Collapse width using max-width for animation */
+    max-width: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .controls-panel.minimized:hover {
@@ -321,8 +330,8 @@ body {
 .controls-panel.minimized .toggle-btn {
     transform: rotate(180deg);
     /* Flip arrow */
-    margin-right: -5px;
-    /* Adjust alignment when minimized */
+    margin-right: 0;
+    /* Remove margin to center in the collapsed pill */
 }
 
 .control-btn {
