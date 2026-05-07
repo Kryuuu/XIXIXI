@@ -1,0 +1,65 @@
+.footer {
+  padding: 80px 20px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.heartLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.heartLine span {
+  font-size: 0.9rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink-500), transparent);
+}
+
+.message {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  background: var(--gradient-love);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.sub {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.infinity {
+  font-size: 2rem;
+  background: var(--gradient-love);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 8px rgba(236, 64, 122, 0.2));
+  }
+  50% { 
+    filter: drop-shadow(0 0 16px rgba(236, 64, 122, 0.4));
+  }
+}

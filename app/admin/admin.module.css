@@ -1,0 +1,603 @@
+/* ============================================ */
+/*          LOGIN PAGE                          */
+/* ============================================ */
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.loginCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(236, 64, 122, 0.1);
+  animation: fadeInUp 0.6s ease;
+}
+
+.loginEmoji {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.loginTitle {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  background: var(--gradient-love);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.loginSubtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(13, 10, 18, 0.5);
+  border: 1px solid rgba(244, 143, 177, 0.12);
+  border-radius: var(--radius-md);
+  transition: border-color 0.3s ease;
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--pink-500);
+  box-shadow: 0 0 0 3px rgba(236, 64, 122, 0.1);
+}
+
+.inputWrapper i {
+  color: var(--pink-400);
+  font-size: 1.2rem;
+}
+
+.passwordInput {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+}
+
+.passwordInput::placeholder {
+  color: var(--text-muted);
+}
+
+.authError {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  background: var(--gradient-love);
+  border: none;
+  border-radius: var(--radius-md);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.loginBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(236, 64, 122, 0.3);
+}
+
+.backLink {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.backLink:hover {
+  color: var(--pink-300);
+}
+
+/* ============================================ */
+/*          ADMIN DASHBOARD                     */
+/* ============================================ */
+.adminPage {
+  min-height: 100vh;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.headerTitle {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerEmoji {
+  font-size: 1.6rem;
+}
+
+.photoCount {
+  padding: 4px 14px;
+  background: rgba(236, 64, 122, 0.12);
+  border: 1px solid rgba(236, 64, 122, 0.2);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--pink-300);
+  font-weight: 600;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refreshBtn, .homeBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(13, 10, 18, 0.4);
+  border: 1px solid rgba(244, 143, 177, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.refreshBtn {
+  padding: 10px;
+}
+
+.refreshBtn:hover, .homeBtn:hover {
+  border-color: rgba(236, 64, 122, 0.3);
+  color: var(--pink-300);
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ============================================ */
+/*          TOAST NOTIFICATION                  */
+/* ============================================ */
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 3.7s forwards;
+  backdrop-filter: blur(12px);
+}
+
+.success {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  color: #81c784;
+}
+
+.error {
+  background: rgba(244, 67, 54, 0.15);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  color: #ef9a9a;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ============================================ */
+/*          UPLOAD ZONE                         */
+/* ============================================ */
+.uploadZone {
+  border: 2px dashed rgba(244, 143, 177, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 32px;
+  background: rgba(13, 10, 18, 0.3);
+  position: relative;
+}
+
+.uploadZone:hover {
+  border-color: rgba(236, 64, 122, 0.4);
+  background: rgba(236, 64, 122, 0.04);
+}
+
+.uploadZone.dragging {
+  border-color: var(--pink-500);
+  background: rgba(236, 64, 122, 0.08);
+  border-style: solid;
+  transform: scale(1.01);
+  box-shadow: 0 0 30px rgba(236, 64, 122, 0.15);
+}
+
+.uploadZone.uploading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.fileInput {
+  display: none;
+}
+
+.idleState i, .dragState i {
+  font-size: 3rem;
+  color: var(--pink-400);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.uploadTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.uploadSub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.uploadHint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 4px 14px;
+  background: rgba(244, 143, 177, 0.06);
+  border-radius: 20px;
+}
+
+.dragState {
+  animation: pulse 1s ease infinite;
+}
+
+.dragState p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--pink-300);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Upload spinner */
+.uploadingState, .loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  padding: 40px;
+}
+
+.uploadSpinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(244, 143, 177, 0.15);
+  border-top-color: var(--pink-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.emptyState i {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+/* ============================================ */
+/*          PHOTO GRID                          */
+/* ============================================ */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.photoCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.photoCard:hover {
+  border-color: rgba(236, 64, 122, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(236, 64, 122, 0.1);
+}
+
+.photoPreview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.photoImage {
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.photoCard:hover .photoImage {
+  transform: scale(1.05);
+}
+
+/* Delete overlay */
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photoCard:hover .photoOverlay {
+  opacity: 1;
+}
+
+.deleteBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(244, 67, 54, 0.8);
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #f44336;
+  transform: scale(1.1);
+}
+
+/* Delete confirmation */
+.confirmDelete {
+  text-align: center;
+  padding: 12px;
+}
+
+.confirmDelete p {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.confirmBtns {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.confirmYes, .confirmNo {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.confirmYes {
+  background: #f44336;
+  color: white;
+}
+
+.confirmNo {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.confirmYes:hover, .confirmNo:hover {
+  transform: scale(1.05);
+}
+
+/* Photo info */
+.photoInfo {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.photoName {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.photoSize {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ============================================ */
+/*          ANIMATION                           */
+/* ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================ */
+/*          RESPONSIVE                          */
+/* ============================================ */
+@media (max-width: 768px) {
+  .adminPage {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .headerLeft {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .headerRight {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .headerTitle {
+    font-size: 1.2rem;
+  }
+
+  .homeBtn span {
+    display: none;
+  }
+
+  .uploadZone {
+    padding: 32px 16px;
+  }
+
+  .photoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .loginCard {
+    padding: 36px 24px;
+  }
+
+  .toast {
+    top: auto;
+    bottom: 24px;
+    right: 16px;
+    left: 16px;
+    text-align: center;
+  }
+
+  /* Always show delete overlay on mobile */
+  .photoOverlay {
+    opacity: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 60%);
+  }
+
+  .deleteBtn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}

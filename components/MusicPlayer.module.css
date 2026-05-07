@@ -1,0 +1,113 @@
+.musicBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(13, 10, 18, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(244, 143, 177, 0.12);
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(236, 64, 122, 0.08);
+}
+
+.musicBtn:hover {
+  transform: scale(1.05);
+  border-color: rgba(236, 64, 122, 0.3);
+  background: rgba(13, 10, 18, 0.85);
+}
+
+.musicBtn.playing {
+  border-color: rgba(236, 64, 122, 0.3);
+}
+
+.iconWrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gradient-love);
+  color: white;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.musicBtn.playing .iconWrapper {
+  animation: spin 3s linear infinite;
+}
+
+.label {
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+/* Visualizer bars */
+.visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+.visualizer span {
+  width: 3px;
+  background: var(--pink-400);
+  border-radius: 2px;
+  animation: soundBar 0.6s ease-in-out infinite alternate;
+}
+
+.visualizer span:nth-child(1) {
+  height: 4px;
+  animation-delay: 0s;
+}
+
+.visualizer span:nth-child(2) {
+  height: 10px;
+  animation-delay: 0.2s;
+}
+
+.visualizer span:nth-child(3) {
+  height: 6px;
+  animation-delay: 0.4s;
+}
+
+@keyframes soundBar {
+  0% { height: 3px; }
+  100% { height: 16px; }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+  .musicBtn {
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 14px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .iconWrapper {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+}

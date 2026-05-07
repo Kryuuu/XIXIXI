@@ -1,0 +1,119 @@
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.tracksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.trackCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.trackCard.visible {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.trackCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(236, 64, 122, 0.15);
+  border-color: rgba(244, 143, 177, 0.25);
+}
+
+.trackHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 12px;
+}
+
+.trackEmoji {
+  font-size: 1.6rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.trackInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.trackTitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.trackArtist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Sound bar animation */
+.soundBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.soundBars span {
+  width: 3px;
+  background: var(--pink-400);
+  border-radius: 2px;
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+}
+
+.soundBars span:nth-child(1) { height: 6px; animation-delay: 0s; }
+.soundBars span:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+.soundBars span:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+.soundBars span:nth-child(4) { height: 18px; animation-delay: 0.45s; }
+
+@keyframes soundWave {
+  0% { height: 4px; }
+  100% { height: 20px; }
+}
+
+.iframeWrapper {
+  padding: 0 12px 12px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .tracksGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

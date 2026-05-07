@@ -1,0 +1,219 @@
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== AMBIENT ORBS ========== */
+.orbContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(236, 64, 122, 0.4), transparent 70%);
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(171, 71, 188, 0.35), transparent 70%);
+  top: 40%;
+  right: 5%;
+  animation-delay: -4s;
+}
+
+.orb3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 138, 0.3), transparent 70%);
+  bottom: 20%;
+  left: 40%;
+  animation-delay: -8s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.1); }
+  50% { transform: translate(-15px, 25px) scale(0.95); }
+  75% { transform: translate(20px, 10px) scale(1.05); }
+}
+
+/* ========== HERO CONTENT ========== */
+.heroContent {
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.heroContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.preTitle {
+  font-family: var(--font-script);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: var(--pink-300);
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+  animation: fadeIn 1s ease 0.5s both;
+}
+
+.mainTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 9vw, 5.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  background: var(--gradient-love);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.subText {
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 32px;
+  line-height: 1.8;
+}
+
+.dateBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  background: rgba(236, 64, 122, 0.1);
+  border: 1px solid rgba(236, 64, 122, 0.2);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: var(--pink-200);
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.dateBadge i {
+  color: var(--rose-400);
+  font-size: 1.1rem;
+}
+
+/* ========== SCROLL INDICATOR ========== */
+.scrollDown {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+  animation: bounce 2s infinite;
+  z-index: 3;
+}
+
+.scrollDown:hover {
+  color: var(--pink-300);
+}
+
+.scrollDown i {
+  font-size: 1.4rem;
+}
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 20px 70px;
+    min-height: 100svh;
+  }
+
+  .orb1 {
+    width: 180px;
+    height: 180px;
+    top: 10%;
+    left: 5%;
+  }
+  .orb2 {
+    width: 130px;
+    height: 130px;
+  }
+  .orb3 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .mainTitle {
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
+    margin-bottom: 18px;
+  }
+
+  .preTitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .subText {
+    font-size: 0.9rem;
+    padding: 0 10px;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .dateBadge {
+    font-size: 0.78rem;
+    padding: 8px 18px;
+    gap: 8px;
+  }
+
+  .scrollDown {
+    bottom: 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .subText {
+    font-size: 0.85rem;
+  }
+}
