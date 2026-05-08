@@ -23,7 +23,7 @@ const loveMessages = [
   { text: "Kamu bukan hanya kekasihku — kamu adalah rumahku, tempatku pulang", style: "warm" },
   { text: "Setiap hari bersamamu terasa seperti hadiah yang tak ternilai", style: "soft" },
   { text: "Tapi hari ini... kamu yang paling bersinar ✨", style: "glow" },
-  { text: "Aku berdoa, semoga Tuhan selalu menjagamu dan mengabulkan semua mimpimu 🤲", style: "soft" },
+  { text: "Aku berdoa, semoga Allah selalu menjagamu dan mengabulkan semua mimpimu 🤲", style: "soft" },
   { text: "Semoga kebahagiaan selalu memelukmu erat seperti aku memelukmu 💫", style: "warm" },
   { text: "Dan aku berjanji... di setiap langkahmu, aku akan selalu ada 🤍", style: "promise" },
 ];
